@@ -1,0 +1,51 @@
+buildscript{
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.0.RC2"
+    }
+}
+
+group 'es.simplesw.aws'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.10.77'
+    }
+}
+
+dependencies {
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+      //  exclude module: "spring-boot-starter-tomcat"
+    }
+    //compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+
+    testCompile("junit:junit")
+
+    //Amazon dependencies
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
+    //compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.106'
+
+    //compile 'com.amazonaws:aws-java-sdk-s3'
+    compile group: 'com.amazonaws', name: 'amazon-sqs-java-messaging-lib', version: '1.0.1'
+
+}
