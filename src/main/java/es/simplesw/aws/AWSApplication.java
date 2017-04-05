@@ -15,6 +15,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.Map;
  * Created by fjmora on 24/03/17.
  */
 @SpringBootApplication
+@EnableScheduling
 public class AWSApplication {
     public static void main(String[] args) {
         SpringApplication.run(AWSApplication.class, args);
